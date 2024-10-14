@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241003070305_CommentOneToOne")]
-    partial class CommentOneToOne
+    [Migration("20241014023012_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2a7e2c26-6910-4cb7-84c6-18d125986e39",
+                            Id = "6447d13d-1aa0-4c98-ad2e-28b6d9e75366",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0a0f9463-4cbb-4828-b243-6abaea826450",
+                            Id = "7a1a1d9f-04a9-48df-9286-21720604db2a",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -285,6 +285,23 @@ namespace api.Migrations
                     b.HasIndex("StockId");
 
                     b.ToTable("Portfolios");
+                });
+
+            modelBuilder.Entity("api.Models.Something", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("SomethingName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Somethings");
                 });
 
             modelBuilder.Entity("api.Models.Stock", b =>
